@@ -1,2 +1,3 @@
 # esgi-ci-cd
-exercice
+
+ex2

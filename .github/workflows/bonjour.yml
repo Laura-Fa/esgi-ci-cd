@@ -1,6 +1,7 @@
 name: Bonjour
 on:
   - push
+  - pull_request
 jobs:
   dire_bonjour:
     runs-on: ubuntu-22.04
@@ -8,8 +9,8 @@ jobs:
       IMAGE_NAME: "mynode:19"
     steps:
       - uses: actions/checkout@v3   # Récupère le contenu du dépôt correspondant au commit du workflow en cours
-      - uses: actions/setup-node@v3
+      - uses: hadolint/hadolint-action@v3.1.0
         with:
-          node-version: 19 
+          dockerfile: Dockerfile
       - run: docker image build --tag="${IMAGE_NAME}" ./
       - run: docker container run "${IMAGE_NAME}" npm run lint
